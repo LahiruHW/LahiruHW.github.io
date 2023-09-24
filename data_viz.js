@@ -10,8 +10,6 @@ vegaEmbed("#viz", vg_1)
     // Access the Vega view instance 
     // (https://vega.github.io/vega/docs/api/view/) as result.view
 
-    // console.log(result);
-
 })
 .catch(console.error);
 
