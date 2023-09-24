@@ -1,62 +1,91 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 450,
+  "width": 950,
+  "height": 600,
   "title": "World Happiness Rankings (2019)",
   "data": {
-    "url": "2019.csv"
+    "url": "datasets/2019.csv"
   },
   "projection": { "type": "equalEarth" },
   "layer": [
     {
       "data": {
         "url": "topoJSON/ne_110m_admin_0_countries.topojson",
-        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
-      },
-      "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" }
-    },
-    {
-      "data": {
-        "url": "datasets/2019.csv"
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
       },
       "mark": {
         "type": "geoshape",
-        "tooltip": true,
-        "filled": true
+        "stroke": "black",
+        "strokeWidth": 0.25
       },
+
       "transform": [
         {
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "topoJSON/ne_110m_admin_0_countries.topojson",
-              "format": {
-                "type": "topojson",
-                "feature": "ne_110m_admin_0_countries"
-              }
+              "url": "datasets/2019.csv"
             },
-            "key": "properties.NAME"
+            "key": "Country"
           },
-          "as": "country"
-        },
-        {
-          "calculate": "datum['Happiness Score']",
-          "as": "colourValue"
+          "as": "happiness"
         }
       ],
 
       "encoding": {
-        "color": {
-          "field": "colorValue",
+        "fill": {
+          
+          "field": "happiness.Happiness_Score",
           "type": "quantitative",
-          "title": "Happiness Score",
-          "scale": { "scheme": "bluegreen" }
+          "scale": {
+            "domain": [2, 8],
+            "scheme": "yellowgreenblue"
+          },
+          
+          "legend": {
+            "title": "Happiness Score",
+            "orient": "bottom-right",
+            "gradientLength": 400
+          },
+
+          "condition":{
+            "test": "datum['happiness.Happiness_Score'] === null",
+            "value": "red"
+          }
+
         },
         "tooltip": [
-          { "field": "Country", "type": "ordinal" },
-          { "field": "Happiness Score", "type": "quantitative" }
+          {
+            "title": "Country",
+            "field": "happiness.Country",
+            "type": "ordinal"
+          },
+          {
+            "title": "Happiness Score",
+            "field": "happiness.Happiness_Score",
+            "type": "quantitative"
+          },
+          {
+            "title": "Freedom",
+            "field": "happiness.Freedom",
+            "type": "quantitative"
+          },
+          {
+            "title": "Economy (GDP per Capita)",
+            "field": "happiness.Economy (GDP per Capita)",
+            "type": "quantitative"
+          }
+          
         ]
       }
     }
-  ]
+  ],
+  "config": {
+    "mark": {
+      "invalid": null
+    }
+  }
 }
