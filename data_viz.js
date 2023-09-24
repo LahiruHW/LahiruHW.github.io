@@ -1,6 +1,6 @@
 
-// var vg_1 = "data_bar_chart.vg.json";
-// var vg_1 = "data_stacked_bar_chart.vg.json";
+var vg_1 = "data_viz.vg.json";
+
 
 
 vegaEmbed("#viz", vg_1)
