@@ -5,23 +5,14 @@
       "invalid": null
     }
   },
-
   "data": {
     "url": "datasets/2019_modified.csv"
   },
-  
-
-  
-
   "hconcat": [
-    
-
-
-
     {
       "title": "World Happiness Rankings (2019)",
       "projection": { "type": "equalEarth" },
-      "width": 800,
+      "width": 850,
       "height": 500,
       "layer": [
         {
@@ -35,7 +26,7 @@
           "mark": {
             "type": "geoshape",
             "stroke": "black",
-            "strokeWidth": 0.25
+            "strokeWidth": 0.3
           },
           "transform": [
             {
@@ -85,21 +76,31 @@
                 "title": "Economy (GDP per Capita)",
                 "field": "happiness.Economy (GDP per Capita)",
                 "type": "quantitative"
+              },
+              {
+                "title": "Happiness Class",
+                "field": "happiness.Happiness_Class"
               }
             ]
           }
         }
       ]
     },
-
-
-
-
     {
-      "width": 400,
-      "height": 400,
+      "width": 500,
+      "height": 500,
       "mark": "arc",
       "title": "Happiness Class Distribution",
+      "transform": [
+        {
+          "aggregate": [ { "op": "count", "field": "value", "as": "count" } ],
+          "groupby": ["Happiness_Class"]
+        },
+        {
+          "calculate": "(datum.count / 156) * 100",
+          "as": "percentage"
+        }
+      ],
       "encoding": {
         "theta": {
           "field": "count",
@@ -109,13 +110,17 @@
           "field": "Happiness_Class",
           "type": "ordinal",
           "scale": {
-            "domain": [0, 1, 2, 3, 4, 5, 6, 7],
-            "range": ["#f0f9e8", "#ccebc5", "#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0868ac", "#084081"]
+            "domain": [2, 3, 4, 5, 6, 7],
+            "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0868ac", "#084081"]
           },
           "title": "Happiness Class"
         },
-
         "tooltip": [
+          {
+            "field": "Happiness_Class",
+            "type": "ordinal",
+            "title": "Happiness Class"
+          },
           {
             "field": "count",
             "type": "quantitative",
@@ -123,27 +128,13 @@
             "aggregate": "sum"
           },
           {
-            "field": "value",
+            "field": "percentage",
             "type": "quantitative",
-            "title": "Percentage of Countries",
-            "aggregate": "average"
+            "title": "% of All Countries",
+            "format": ".1f"
           }
-        ]
-        
-
-
-      },
-      "transform": [
-        {
-          "aggregate": [ { "op": "count", "as": "count" }  ],
-          "groupby": ["Happiness_Class"]
-
-        }
-      ]
+        ] 
+      }
     }
-
-
-
-
   ]
 }
