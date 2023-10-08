@@ -1,92 +1,149 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 950,
-    "height": 600,
-    "title": "World Happiness Rankings (2019)",
-    "data": {
-      "url": "datasets/2019.csv"
-    },
-    "projection": { "type": "equalEarth" },
-    "layer": [
-      {
-        "data": {
-          "url": "topoJSON/ne_110m_admin_0_countries.topojson",
-          "format": {
-            "type": "topojson",
-            "feature": "ne_110m_admin_0_countries"
-          }
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "black",
-          "strokeWidth": 0.25
-        },
-  
-        "transform": [
-          {
-            "lookup": "properties.NAME",
-            "from": {
-              "data": {
-                "url": "datasets/2019.csv"
-              },
-              "key": "Country"
-            },
-            "as": "happiness"
-          }
-        ],
-  
-        "encoding": {
-          "fill": {
-            
-            "field": "happiness.Happiness_Score",
-            "type": "quantitative",
-            "scale": {
-              "domain": [2, 8],
-              "scheme": "yellowgreenblue"
-            },
-            
-            "legend": {
-              "title": "Happiness Score",
-              "orient": "bottom-right",
-              "gradientLength": 400
-            },
-  
-            "condition":{
-              "test": "datum['happiness.Happiness_Score'] === null",
-              "value": "red"
-            }
-  
-          },
-          "tooltip": [
-            {
-              "title": "Country",
-              "field": "happiness.Country",
-              "type": "ordinal"
-            },
-            {
-              "title": "Happiness Score",
-              "field": "happiness.Happiness_Score",
-              "type": "quantitative"
-            },
-            {
-              "title": "Freedom",
-              "field": "happiness.Freedom",
-              "type": "quantitative"
-            },
-            {
-              "title": "Economy (GDP per Capita)",
-              "field": "happiness.Economy (GDP per Capita)",
-              "type": "quantitative"
-            }
-            
-          ]
-        }
-      }
-    ],
-    "config": {
-      "mark": {
-        "invalid": null
-      }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "mark": {
+      "invalid": null
     }
-  }
+  },
+
+  "data": {
+    "url": "datasets/2019_modified.csv"
+  },
   
+
+  
+
+  "hconcat": [
+    
+
+
+
+    {
+      "title": "World Happiness Rankings (2019)",
+      "projection": { "type": "equalEarth" },
+      "width": 800,
+      "height": 500,
+      "layer": [
+        {
+          "data": {
+            "url": "topoJSON/ne_110m_admin_0_countries.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "ne_110m_admin_0_countries"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "stroke": "black",
+            "strokeWidth": 0.25
+          },
+          "transform": [
+            {
+              "lookup": "properties.NAME",
+              "from": {
+                "data": {
+                  "url": "datasets/2019_modified.csv"
+                },
+                "key": "Country"
+              },
+              "as": "happiness"
+            }
+          ],
+          "encoding": {
+            "fill": {
+              "field": "happiness.Happiness_Score",
+              "type": "quantitative",
+              "scale": {
+                "domain": [2, 8],
+                "scheme": "yellowgreenblue"
+              },
+
+              "legend": null,
+
+              "condition": {
+                "test": "datum['happiness.Happiness_Score'] === null",
+                "value": "red"
+              }
+            },
+            "tooltip": [
+              {
+                "title": "Country",
+                "field": "happiness.Country",
+                "type": "ordinal"
+              },
+              {
+                "title": "Happiness Score",
+                "field": "happiness.Happiness_Score",
+                "type": "quantitative"
+              },
+              {
+                "title": "Freedom",
+                "field": "happiness.Freedom",
+                "type": "quantitative"
+              },
+              {
+                "title": "Economy (GDP per Capita)",
+                "field": "happiness.Economy (GDP per Capita)",
+                "type": "quantitative"
+              }
+            ]
+          }
+        }
+      ]
+    },
+
+
+
+
+    {
+      "width": 400,
+      "height": 400,
+      "mark": "arc",
+      "title": "Happiness Class Distribution",
+      "encoding": {
+        "theta": {
+          "field": "count",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Happiness_Class",
+          "type": "ordinal",
+          "scale": {
+            "domain": [0, 1, 2, 3, 4, 5, 6, 7],
+            "range": ["#f0f9e8", "#ccebc5", "#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0868ac", "#084081"]
+          },
+          "title": "Happiness Class"
+        },
+
+        "tooltip": [
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Number of Countries",
+            "aggregate": "sum"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Percentage of Countries",
+            "aggregate": "average"
+          }
+        ]
+        
+
+
+      },
+      "transform": [
+        {
+          "aggregate": [ { "op": "count", "as": "count" }  ],
+          "groupby": ["Happiness_Class"]
+
+        }
+      ]
+    }
+
+
+
+
+  ]
+}
