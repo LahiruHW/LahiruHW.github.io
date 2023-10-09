@@ -6,9 +6,26 @@
     }
   },
   "data": {
-    "url": "datasets/2019_modified.csv"
+    "url": "datasets/2019_modified.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Happiness_Score": "number",
+        "GDP_per_Capita": "number",
+        "Social_Support": "number",
+        "Healthy_Life_Expectancy": "number",
+        "Freedom": "number",
+        "Generosity": "number",
+        "Perceptions_of_Corruption": "number"
+      }
+    }
   },
   "hconcat": [
+
+
+
+
+
     {
       "title": "World Happiness Rankings (2019)",
       "projection": { "type": "equalEarth" },
@@ -33,11 +50,28 @@
               "lookup": "properties.NAME",
               "from": {
                 "data": {
-                  "url": "datasets/2019_modified.csv"
+                  "url": "datasets/2019_modified.csv",
+                  "format": {
+                    "type": "csv",
+                    "parse": {
+                      "Happiness_Score": "number",
+                      "GDP_per_Capita": "number",
+                      "Social_Support": "number",
+                      "Healthy_Life_Expectancy": "number",
+                      "Freedom": "number",
+                      "Generosity": "number",
+                      "Perceptions_of_Corruption": "number"
+                    }
+                  }
                 },
                 "key": "Country"
               },
               "as": "happiness"
+            },
+            {
+              "filter": {
+                "param": "pieClick"
+              }
             }
           ],
           "encoding": {
@@ -45,14 +79,12 @@
               "field": "happiness.Happiness_Score",
               "type": "quantitative",
               "scale": {
-                "domain": [2, 8],
-                "scheme": "yellowgreenblue"
+                "domain": [2, 3, 4, 5, 6, 7],
+                "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0878ac", "#084081"]
               },
-
               "legend": null,
-
               "condition": {
-                "test": "datum['happiness.Happiness_Score'] === null",
+                "test": "datum['happiness.Happiness_Class'] === null",
                 "value": "red"
               }
             },
@@ -86,7 +118,22 @@
         }
       ]
     },
+
+
+
+
+
     {
+      "params": [
+        {
+          "name": "pieClick",
+          "select": {
+            "type": "point",
+            "fields": ["Happiness_Class"],
+            "encodings": ["fill"]
+          }
+        }
+      ],
       "width": 500,
       "height": 500,
       "mark": "arc",
@@ -106,12 +153,12 @@
           "field": "count",
           "type": "quantitative"
         },
-        "color": {
+        "fill": {
           "field": "Happiness_Class",
-          "type": "ordinal",
+          "type": "nominal",
           "scale": {
             "domain": [2, 3, 4, 5, 6, 7],
-            "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0868ac", "#084081"]
+            "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0878ac", "#084081"]
           },
           "title": "Happiness Class"
         },
@@ -135,6 +182,12 @@
           }
         ] 
       }
+      
     }
+
+
+
+
+
   ]
 }
