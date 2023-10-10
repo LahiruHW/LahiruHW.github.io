@@ -6,19 +6,7 @@
     }
   },
   "data": {
-    "url": "datasets/2019_modified.csv",
-    "format": {
-      "type": "csv",
-      "parse": {
-        "Happiness_Score": "number",
-        "GDP_per_Capita": "number",
-        "Social_Support": "number",
-        "Healthy_Life_Expectancy": "number",
-        "Freedom": "number",
-        "Generosity": "number",
-        "Perceptions_of_Corruption": "number"
-      }
-    }
+    "url": "https://raw.githubusercontent.com/LahiruHW/LahiruHW.github.io/main/Week%2010%20Submission/datasets/2019_modified.csv"
   },
   "hconcat": [
 
@@ -50,19 +38,7 @@
               "lookup": "properties.NAME",
               "from": {
                 "data": {
-                  "url": "datasets/2019_modified.csv",
-                  "format": {
-                    "type": "csv",
-                    "parse": {
-                      "Happiness_Score": "number",
-                      "GDP_per_Capita": "number",
-                      "Social_Support": "number",
-                      "Healthy_Life_Expectancy": "number",
-                      "Freedom": "number",
-                      "Generosity": "number",
-                      "Perceptions_of_Corruption": "number"
-                    }
-                  }
+                  "url": "datasets/2019_modified.csv"
                 },
                 "key": "Country"
               },
@@ -70,7 +46,7 @@
             },
             {
               "filter": {
-                "param": "pieClick"
+               "param": "pieClick"
               }
             }
           ],
@@ -111,7 +87,8 @@
               },
               {
                 "title": "Happiness Class",
-                "field": "happiness.Happiness_Class"
+                "field": "happiness.Happiness_Class",
+                "type": "quantitative"
               }
             ]
           }
@@ -130,17 +107,24 @@
           "select": {
             "type": "point",
             "fields": ["Happiness_Class"],
-            "encodings": ["fill"]
+            "encodings": ["fill"],
+            "on": "click"
           }
         }
       ],
       "width": 500,
       "height": 500,
+      "resolve": {
+        "scale": {
+          "x": "independent",
+          "y": "independent"
+        }
+      },
       "mark": "arc",
       "title": "Happiness Class Distribution",
       "transform": [
         {
-          "aggregate": [ { "op": "count", "field": "value", "as": "count" } ],
+          "aggregate": [ { "op": "count", "as": "count" } ],
           "groupby": ["Happiness_Class"]
         },
         {
@@ -150,7 +134,7 @@
       ],
       "encoding": {
         "theta": {
-          "field": "count",
+          "field": "percentage",
           "type": "quantitative"
         },
         "fill": {
@@ -184,9 +168,6 @@
       }
       
     }
-
-
-
 
 
   ]
