@@ -6,7 +6,7 @@ body{
     flex-direction: column; 
     height: 100%; 
     gap: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -16,9 +16,16 @@ h3{ margin: 0%; }
 h4{ margin: 0%; }
 p { margin: 0%; }
 
-#viz{
+#viz1{
     padding: 5px;
     margin: 0%;
+    display: flex;
+}
+
+#viz2{
+    padding: 5px;
+    margin: 0%;
+    display: flex;
 }
 
 .viz-container{

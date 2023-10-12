@@ -8,12 +8,8 @@
   "data": {
     "url": "https://raw.githubusercontent.com/LahiruHW/LahiruHW.github.io/main/Week%2010%20Submission/datasets/2019_modified.csv"
   },
+
   "hconcat": [
-
-
-
-
-
     {
       "title": "World Happiness Rankings (2019)",
       "projection": { "type": "equalEarth" },
@@ -46,17 +42,24 @@
             },
             {
               "filter": {
-               "param": "pieClick"
+                "param": "pieClick"
               }
             }
           ],
           "encoding": {
             "fill": {
-              "field": "happiness.Happiness_Score",
+              "field": "happiness.Happiness_Class",
               "type": "quantitative",
               "scale": {
                 "domain": [2, 3, 4, 5, 6, 7],
-                "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0878ac", "#084081"]
+                "range": [
+                  "#a8ddb5",
+                  "#7bccc4",
+                  "#43a2ca",
+                  "#0868ac",
+                  "#0878ac",
+                  "#084081"
+                ]
               },
               "legend": null,
               "condition": {
@@ -96,10 +99,6 @@
       ]
     },
 
-
-
-
-
     {
       "params": [
         {
@@ -124,7 +123,7 @@
       "title": "Happiness Class Distribution",
       "transform": [
         {
-          "aggregate": [ { "op": "count", "as": "count" } ],
+          "aggregate": [{ "op": "count", "as": "count" }],
           "groupby": ["Happiness_Class"]
         },
         {
@@ -142,9 +141,21 @@
           "type": "nominal",
           "scale": {
             "domain": [2, 3, 4, 5, 6, 7],
-            "range": ["#a8ddb5", "#7bccc4", "#43a2ca", "#0868ac", "#0878ac", "#084081"]
+            "range": [
+              "#a8ddb5",
+              "#7bccc4",
+              "#43a2ca",
+              "#0868ac",
+              "#0878ac",
+              "#084081"
+            ]
           },
-          "title": "Happiness Class"
+          "title": "Happiness Class",
+          "legend": {
+            "orient": "top-left",
+            "titleFontSize": 10,
+            "symbolSize": 20
+          }
         },
         "tooltip": [
           {
@@ -164,11 +175,8 @@
             "title": "% of All Countries",
             "format": ".1f"
           }
-        ] 
+        ]
       }
-      
     }
-
-
   ]
 }

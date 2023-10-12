@@ -1,9 +1,12 @@
 
-var vg_1 = "data_viz.vg.json";
+var vg_1 = "data_viz1.vg.json";
+var vg_2 = "data_viz2.vg.json";
 
 
 
-vegaEmbed("#viz", vg_1)
+vegaEmbed("#viz1", vg_1)
+vegaEmbed("#viz2", vg_2)
+
 
 .then(function (result) {
 
