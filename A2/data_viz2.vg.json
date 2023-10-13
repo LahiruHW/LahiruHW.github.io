@@ -12,7 +12,11 @@
   "title": "Average GDP per Capita of Each Happiness Class",
   "width": 850,
   "height": 500,
-  "mark": "bar",
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 200
+  },
   "transform": [
     {
       "aggregate": [
