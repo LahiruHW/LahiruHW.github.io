@@ -8,3 +8,7 @@ onWeeek9BtnClick = () => {
 onWeeek10BtnClick = () => {
     window.location.href = "../Week 10 Submission/week_10.html";
 }
+
+onA2BtnClick = () => {
+    window.location.href = "../A2/a2.html";
+}
