@@ -64,7 +64,7 @@
               "legend": null,
               "condition": {
                 "test": "datum['happiness.Happiness_Class'] === null",
-                "value": "red"
+                "value": "grey"
               }
             },
             "tooltip": [
