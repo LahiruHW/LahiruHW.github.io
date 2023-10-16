@@ -29,25 +29,6 @@
                 "stroke": "black",
                 "strokeWidth": 0.3
               },
-              "params": [
-                {
-                  "name": "pieClick",
-                  "select": {
-                    "type": "point",
-                    "on": "click",
-                    "fields": ["Happiness_Class"],
-                    "resolve": "global",
-                    "encodings": ["fill"]
-                  },
-                  "value": null,
-                  "bind":{
-                    "input": "range",
-                    "min": 2,
-                    "max": 7,
-                    "step": 1
-                  }
-                }
-              ],
               "transform": [
                 {
                   "lookup": "properties.NAME",
