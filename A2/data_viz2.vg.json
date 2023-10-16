@@ -23,8 +23,8 @@
           "aggregate": [
             {
               "op": "mean",
-              "field": "Economy (GDP per Capita)",
-              "as": "gdp_avg"
+              "field": "Generosity",
+              "as": "gen_avg"
             }
           ],
           "groupby": ["Happiness_Class"]
@@ -39,12 +39,9 @@
           }
         },
         "y": {
-          "field": "gdp_avg",
+          "field": "gen_avg",
           "type": "quantitative",
-          "aggregate": "mean",
-          "axis": {
-            "title": "Average GDP per Capita"
-          }
+          "aggregate": "mean"
         },
         "tooltip": [
           {
@@ -55,7 +52,7 @@
           {
             "field": "gdp_avg",
             "type": "quantitative",
-            "title": "Average GDP per Capita",
+            "title": "Average Generosity",
             "format": ".2f"
           }
         ]
@@ -72,8 +69,8 @@
           "aggregate": [
             {
               "op": "mean",
-              "field": "Economy (GDP per Capita)",
-              "as": "gdp_avg"
+              "field": "Generosity",
+              "as": "gen_avg"
             }
           ],
           "groupby": ["Happiness_Class"]
@@ -88,11 +85,11 @@
           }
         },
         "y": {
-          "field": "gdp_avg",
+          "field": "gen_avg",
           "type": "quantitative",
           "aggregate": "mean",
           "axis": {
-            "title": "Average GDP per Capita"
+            "title": "Average Geneoristy"
           }
         },
         "tooltip": [
@@ -102,9 +99,9 @@
             "title": "Happiness Class"
           },
           {
-            "field": "gdp_avg",
+            "field": "gen_avg",
             "type": "quantitative",
-            "title": "Average GDP per Capita",
+            "title": "Average Generosity",
             "format": ".2f"
           }
         ]

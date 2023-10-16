@@ -1,0 +1,48 @@
+
+
+      "params": [
+        {
+          "name": "pieClick",
+          "value": null,
+          "select": {
+            "type": "point",
+            "fields": ["datum.Happiness_Class"],
+            "encodings": ["fill"],
+            "on": "click"
+          }
+        }
+      ],
+
+
+
+
+
+                {
+                  "lookup": "properties.NAME",
+                  "from": {
+                    "data": {
+                      "url": "datasets/2019_modified.csv"
+                    },
+                    "key": "Country"
+                  },
+                  "as": "happiness"
+                },
+
+
+
+
+
+
+                {
+                  "filter": {
+                    "field": "happiness.Happiness_Class",
+                    "equal": {"expr": "pieClick && pieClick['Happiness_Class']"}
+                  }
+                }
+
+
+
+
+                {
+                  "filter": "datum.Happiness_Class == pieClick['Happiness_Class']"
+                }
