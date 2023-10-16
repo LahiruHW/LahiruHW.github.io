@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "mark": {
+      "invalid": null
+    }
+  },
+  "data": {
+    "url": "datasets/2019_modified.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 800,
+  "height": 500,
+  "layer": [
+    {
+      "mark": "line",
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "Health (Life Expectancy)",
+              "as": "hp_avg"
+            }
+          ],
+          "groupby": ["Happiness_Class"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Happiness_Class",
+          "type": "ordinal",
+          "axis": {
+            "title": "Happiness Class"
+          }
+        },
+        "y": {
+          "field": "hp_avg",
+          "type": "quantitative",
+          "aggregate": "mean"
+        },
+        "tooltip": [
+          {
+            "field": "Happiness_Class",
+            "type": "ordinal",
+            "title": "Happiness Class"
+          },
+          {
+            "field": "hp_avg",
+            "type": "quantitative",
+            "title": "Average Life Expectancy",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "Health (Life Expectancy)",
+              "as": "hp_avg"
+            }
+          ],
+          "groupby": ["Happiness_Class"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Happiness_Class",
+          "type": "ordinal",
+          "axis": {
+            "title": "Happiness Class"
+          }
+        },
+        "y": {
+          "field": "hp_avg",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "axis": {
+            "title": "Average GDP per Capita & Average Life Expectancy"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Happiness_Class",
+            "type": "ordinal",
+            "title": "Happiness Class"
+          },
+          {
+            "field": "gdp_avg",
+            "type": "quantitative",
+            "title": "Average Life Expectancy",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": "line",
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "Economy (GDP per Capita)",
+              "as": "gdp_avg"
+            }
+          ],
+          "groupby": ["Happiness_Class"]
+        }
+      ],
+      "encoding": {
+        "color": {
+          "value": "#00FF00"
+        },
+        "x": {
+          "field": "Happiness_Class",
+          "type": "ordinal",
+          "axis": {
+            "title": "Happiness Class"
+          }
+        },
+        "y": {
+          "field": "gdp_avg",
+          "type": "quantitative",
+          "aggregate": "mean"
+        },
+        "tooltip": [
+          {
+            "field": "Happiness_Class",
+            "type": "ordinal",
+            "title": "Happiness Class"
+          },
+          {
+            "field": "gdp_avg",
+            "type": "quantitative",
+            "title": "Average Generosity",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "Economy (GDP per Capita)",
+              "as": "gdp_avg"
+            }
+          ],
+          "groupby": ["Happiness_Class"]
+        }
+      ],
+      "encoding": {
+        "color": {
+            "value": "#00FF00"
+          },
+        "x": {
+          "field": "Happiness_Class",
+          "type": "ordinal",
+          "axis": {
+            "title": "Happiness Class"
+          }
+        },
+        "y": {
+          "field": "gdp_avg",
+          "type": "quantitative",
+          "aggregate": "mean"
+        },
+        "tooltip": [
+          {
+            "field": "Happiness_Class",
+            "type": "ordinal",
+            "title": "Happiness Class"
+          },
+          {
+            "field": "gdp_avg",
+            "type": "quantitative",
+            "title": "Average GDP per Capita",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

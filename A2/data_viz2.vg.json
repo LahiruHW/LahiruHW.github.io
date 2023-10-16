@@ -12,7 +12,7 @@
     }
   },
 
-  "title": "Average GDP per Capita of Each Happiness Class",
+  "title": "Average (i.e. Known) Generosity of Each Happiness Class",
   "width": 850,
   "height": 500,
   "layer": [
